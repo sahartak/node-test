@@ -2,7 +2,10 @@ module.exports = {
 
     login(req, resp) {
         resp.status(200).json({
-            message: 'login from controller zc59'
+            login: {
+                email: req.body.email,
+                password: req.body.password
+            }
         });
     },
 

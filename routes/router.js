@@ -1,7 +1,7 @@
 module.exports = class Router {
 
-    constructor(name, routes) {
-        this.name = name;
+    constructor(controller, routes) {
+        this.controller = controller;
         this.routes = routes;
         const express = require('express');
         this.router = express.Router();
@@ -9,7 +9,7 @@ module.exports = class Router {
     }
 
     initRoutes() {
-        let controller = require('../controllers/' + this.name);
+        let controller = require('../controllers/' + this.controller);
         for(let route of this.routes) {
             this.router[route.type](route.rule, controller[route.method]);
         }

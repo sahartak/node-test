@@ -1,7 +1,7 @@
 module.exports = [
     
     {
-        name: 'category',
+        controller: 'category',
         rules: [
             {type: 'get', rule: '/', method: 'getAll'},
             {type: 'get', rule: '/:id', method: 'getById'},
@@ -12,15 +12,15 @@ module.exports = [
     },
 
     {
-        name: 'auth',
+        controller: 'auth',
         rules: [
-            {type: 'get', rule: '/login', method: 'login'},
+            {type: 'post', rule: '/login', method: 'login'},
             {type: 'post', rule: '/register', method: 'register'}
         ]
     },
 
     {
-        name: 'order',
+        controller: 'order',
         rules: [
             {type: 'get', rule: '/', method: 'getAll'},
             {type: 'post', rule: '/', method: 'create'},
@@ -29,7 +29,7 @@ module.exports = [
 
 
     {
-        name: 'analytics',
+        controller: 'analytics',
         rules: [
             {type: 'get', rule: '/overview', method: 'overview'},
             {type: 'get', rule: '/analytics', method: 'analytics'}
@@ -37,7 +37,7 @@ module.exports = [
     },
 
     {
-        name: 'position',
+        controller: 'position',
         rules: [
             {type: 'get', rule: '/:categoryId', method: 'getByCategoryId'},
             {type: 'delete', rule: '/:id', method: 'remove'},
