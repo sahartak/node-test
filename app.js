@@ -4,18 +4,21 @@ class AppClass {
     constructor(configs) {
         this.app = require('express')();
         this.configs = configs;
-        this.middlewars();
+        this.middlewares();
         this.dbConnect(configs.MongoURI)
         this.initRoutes();
     }
 
-    middlewars() {
+    middlewares() {
         this.app.use(require('morgan')('dev'))
         this.app.use(require('cors')());
 
         const bodyParser = require('body-parser');
         this.app.use(bodyParser.urlencoded({extended: true}));
         this.app.use(bodyParser.json());
+        const passport = require('passport');
+        this.app.use(passport.initialize());
+        require('./middleware/passport')(passport);
     }
 
     initRoutes() {
@@ -32,6 +35,7 @@ class AppClass {
         mongoose.connect(mongoURI)
             .then(() => console.log('mongo connected'))
             .catch(error => console.log(error));
+
     }
 
     getApp() {

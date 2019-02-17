@@ -1,6 +1,6 @@
 module.exports.getAll = function (req, resp) {
     resp.status(200).json({
-        message: "lalala"
+        message: "categories"
     });
 }
 

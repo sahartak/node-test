@@ -10,8 +10,14 @@ module.exports = class Router {
 
     initRoutes() {
         let controller = require('../controllers/' + this.controller);
+        const passport = require('passport');
         for(let route of this.routes) {
-            this.router[route.type](route.rule, controller[route.method]);
+            if(route.secure) {
+                this.router[route.type](route.rule, passport.authenticate('jwt', {session: false}), controller[route.method]);
+            } else {
+                this.router[route.type](route.rule, controller[route.method]);
+            }
+
         }
     }
     
